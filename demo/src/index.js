@@ -2,14 +2,15 @@ import React from 'react'
 import {render} from 'react-dom'
 
 import Component from '../../src'
+import './demo.scss'
 
-let Demo = React.createClass({
-  render() {
-    return <div>
-      <h1>bisu-print-container Demo</h1>
-      <Component/>
-    </div>
-  }
-})
+const Demo = () => (
+  <div>
+    bisu-print-container Demo
+    <Component>
+      <div>Print only this</div>
+    </Component>
+  </div>
+)
 
 render(<Demo/>, document.querySelector('#demo'))

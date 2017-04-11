@@ -1,0 +1,16 @@
+.bisu--print-container {
+  margin: 0;
+  padding: 0;
+  font-family: Arial !important;
+
+  .print-header {
+    background-color: $gray-lighter;
+    padding: 10px;
+  }
+}
+
+@media print {
+  #nprogress {
+    display: none;
+  }
+}

@@ -1,7 +1,21 @@
 import React, { Component } from 'react'
-import { any, func } from 'prop-types'
+import Loading from 'bisu-react-loading'
+import Print from 'react-icons/lib/md/print'
 
 class PrintContainer extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      isReady: props.isReady,
+      error: null,
+    }
+  }
+
+  componentDidMount() {
+    if (this.props.autoPrint) {
+      window.print()
+    }
+  }
 
   _print = () => {
     window.print()
@@ -11,11 +25,51 @@ class PrintContainer extends Component {
     window.close()
   }
 
+  _setReady = () => {
+    this.setState({ isReady: true })
+  }
+
+  _setError = error => {
+    this.setState({ error })
+  }
+
+  _renderToolbar() {
+    const { isReady, error } = this.state
+    if (error) {
+      return (
+        <div className="row">
+          <div className="col-sm-6 col-sm-offset-3">
+            <hr />
+            <p className="alert alert-danger">{error}</p>
+          </div>
+        </div>
+      )
+    } else {
+      if (!isReady) {
+        return <Loading />
+      } else {
+        return this._renderButtons()
+      }
+    }
+  }
+
   _renderButtons() {
     return (
       <div className="print-header text-right hidden-print">
-        <button type="button" onClick={this._close} className="btn btn-default">Close</button>{' '}
-        <button type="button" onClick={this._print} className="btn btn-warning">Print</button>
+        <button
+          type="button"
+          onClick={this._close}
+          className="btn btn-sm btn-light"
+        >
+          Close
+        </button>{' '}
+        <button
+          type="button"
+          onClick={this._print}
+          className="btn btn-sm btn-warning"
+        >
+          <Print /> Print
+        </button>
       </div>
     )
   }
@@ -23,16 +77,14 @@ class PrintContainer extends Component {
   render() {
     return (
       <div className="bisu--print-container">
-        {this._renderButtons()}
-        {this.props.children}
+        {this._renderToolbar()}
+        {this.props.children({
+          setReady: this._setReady,
+          setError: this._setError,
+        })}
       </div>
     )
   }
-}
-
-PrintContainer.propTypes = {
-  children: any,
-  onClose: func,
 }
 
 export default PrintContainer

@@ -1,6 +1,6 @@
 {
   "name": "bisu-print-container",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "bisu-print-container React component",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -16,19 +16,19 @@
     "start": "nwb serve-react-demo",
     "test": "nwb test-react",
     "test:coverage": "nwb test-react --coverage",
-    "test:watch": "nwb test-react --server",
-    "prepublish": "npm run build"
+    "test:watch": "nwb test-react --server"
   },
-  "dependencies": {},
-  "peerDependencies": {
-    "react": "15.x"
+  "dependencies": {
+    "bisu-react-loading": "1.0.6",
+    "classnames": "2.2.5"
   },
   "devDependencies": {
     "bootstrap-sass": "3.3.7",
-    "nwb": "0.15.x",
-    "nwb-sass": "0.7.1",
-    "react": "^15.5.3",
-    "react-dom": "^15.5.3"
+    "nwb": "0.19.0",
+    "nwb-sass": "0.8.1",
+    "react": "16.0.0",
+    "react-dom": "16.0.0",
+    "react-icons": "2.2.7"
   },
   "author": "",
   "homepage": "",
